@@ -1,0 +1,17 @@
+<div class="container">
+    <div class="content">
+      <h1>Stock Tracker</h1>
+      <h4>Enter the symbol of a stock to track(i.e, AAPL, TSLA, GOOGL)</h4>
+      <div class="search-form">
+        <div class="input-group">
+            <input type="text" #searchInput class="form-control input-lg rounded-pill">
+            <div class="input-group-btn ms-3">
+              <button (click)="onGetAssets(searchInput.value); searchInput.value = ''" class="btn btn-primary btn-lg rounded-pill" type="submit">Search</button>
+             
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+ 
