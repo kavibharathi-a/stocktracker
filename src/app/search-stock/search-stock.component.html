@@ -14,7 +14,7 @@
     </div>
     <ng-container *ngFor="let item of stockDataObj; let i = index">
         <div class="card row">
-            <h2>{{item.stockDesc}}({{item.stockSymbol}})<img id="remove{{item.stockSymbol}}" src="stock\docs\assets\icons\close.png" (click)="closeItem(item,i)" class="close-icon"></h2>
+            <h2>{{item.stockDesc}}({{item.stockSymbol}})<img id="remove{{item.stockSymbol}}" src="../assets/icons/close.png" (click)="closeItem(item,i)" class="close-icon"></h2>
             <div class="col-md-12 row">
                 <div class="col-md-8 row">
                     <div class="col-md-6">
