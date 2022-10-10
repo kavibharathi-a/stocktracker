@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Finhub } from '../finhub';
+import { ActivatedRoute } from '@angular/router';
 import { FinnhubService } from '../service/finnhub.service';
 
 @Component({
@@ -8,31 +8,26 @@ import { FinnhubService } from '../service/finnhub.service';
   styleUrls: ['./stockinfo.component.css']
 })
 export class StockinfoComponent implements OnInit {
+  symbol: any;
+  insiderInfo: any=[];
+  title: any;
 
-  constructor(private finnhubService: FinnhubService) { }
-  todo: any;
-  search = "";
-  finhub: Finhub[] = [];
-
+  constructor(private finnhubService: FinnhubService,private route: ActivatedRoute) { }
+  
   ngOnInit(): void {
-
-     this.finnhubService.searchAssets(this.search).subscribe((finhubData) => 
-      {
-        this.todo = finhubData;
-        console.log(finhubData);
-        this.getQuote(this.search);
-        
-      })
+    this.route.params.subscribe(routeParams => {
+      this.symbol = routeParams['symbol'];
+      this.getInsideInfo();
+    });
   }
 
-  getQuote(symbol: string) {
-    
-      this.finnhubService.getQuote(symbol).subscribe((finhubsymbol) => 
-      {
-        console.log(finhubsymbol);
-        
-      })
-    
+  getInsideInfo(){
+    this.finnhubService.getInsider(this.symbol).subscribe((response:any)=>{
+       this.insiderInfo = response.data;
+       this.title = response.symbol;
+       this.insiderInfo.forEach((element:any) => {
+        element.itemSign = Math.sign(element.change);
+       });
+    })
   }
-
 }

@@ -1,0 +1,33 @@
+.container  {
+    position: relative;
+    /* left: 50%; */
+    margin-top: 5%;
+    width: 50%;
+    /* transform: translate(-50%, -50%); */
+    /* height: 200px; */
+    /* width: 600px; */
+    /* background: #fee7ff; */
+    /* overflow: hidden; */
+    cursor: pointer;
+    
+  }
+
+  .content {
+    /* position: absolute; */
+  /* top: 50%; */
+  /* transform: translatey(-50%); */
+  /* text-align: justify; */
+  /* color: black; */
+  padding: 20px;
+  box-shadow: 0 0 20px 8px #d0d0d0;
+  border-radius: 20px;
+  font-family: 'Merriweather', serif;
+}
+.card{
+    padding: 14px;
+    box-shadow: 0 0 20px 8px #d0d0d0;
+    margin-bottom: 10px;
+}
+.float-right{
+    float: right;
+}

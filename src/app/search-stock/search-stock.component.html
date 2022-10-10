@@ -1,0 +1,42 @@
+<div class="container mb-2">
+    <div class="content">
+        <h1>Stock Tracker</h1>
+        <h4>Enter the symbol of a stock to track(i.e, AAPL, TSLA, GOOGL)</h4>
+        <div class="search-form">
+            <div class="input-group">
+                <input id="stockInput" type="text" [(ngModel)]="stockSymobl" class="form-control input-lg rounded-pill">
+                <div class="input-group-btn ms-3">
+                    <button id="trackBtn" (click)="searchStockInfo()" class="btn btn-primary btn-lg rounded-pill"
+                        type="submit">Search</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ng-container *ngFor="let item of stockDataObj; let i = index">
+        <div class="card row">
+            <h2>{{item.stockDesc}}({{item.stockSymbol}})<img id="remove{{item.stockSymbol}}" src="../assets/icons/close.png" (click)="closeItem(item,i)" class="close-icon"></h2>
+            <div class="col-md-12 row">
+                <div class="col-md-8 row">
+                    <div class="col-md-6">
+                        <h5>Change today:</h5>
+                        {{item.percentageChange | number: '1.0-2'}}%
+                        <h5>Opening Price:</h5>
+                        {{item.openPrice | number: '1.0-2'}}
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Current Price:</h5>
+                        {{item.currentPrice | number: '1.0-2'}}
+                        <h5>High Price:</h5>
+                        {{item.highPrice | number: '1.0-2'}}
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <img *ngIf="item.itemSign === 1" src="../assets/icons/up.png">
+                    <img *ngIf="item.itemSign === -1" src="../assets/icons/down.png">
+                    <a class="menu-logo" [routerLink]="'/searchStock/'+item.stockSymbol"
+                    >Click for insider info</a>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</div>

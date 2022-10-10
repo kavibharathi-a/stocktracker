@@ -1,4 +1,28 @@
-<ul>
-    <li *ngFor="let todo of todo | async ">
-      {{todo.symbol}}
-  </ul>
+<div class="container mb-2">
+  <div class="content">
+    <div class="d-inline mb-2">
+    <h2 class="d-inline">{{title}}</h2>
+    <button id="backBtn" class="float-right" [routerLink]="'/searchStock'">Back</button>
+    </div>
+    <ng-container *ngFor="let item of insiderInfo; let i = index">
+      <div class="card row">
+        <div class="row">
+          <div class="col-md-8 row">
+            <div class="col-md-6">
+              <h5>Year:{{item.year}}</h5>
+              <h5>Month:{{item.month}}</h5>
+            </div>
+            <div class="col-md-6">
+              <h5>Change:{{item.change | number: '1.0-2'}}</h5>
+              <h5>MSPR: {{item.mspr | number: '1.0-2'}}</h5>
+            </div>
+          </div>
+          <div class="col-md-4">
+            <img *ngIf="item.itemSign === 1" src="../assets/icons/up.png">
+            <img *ngIf="item.itemSign === -1" src="../assets/icons/down.png">
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>
