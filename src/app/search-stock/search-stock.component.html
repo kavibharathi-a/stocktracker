@@ -12,6 +12,7 @@
             </div>
         </div>
     </div>
+    <ng-container *ngIf="stockDataObj.length > 0">
     <ng-container *ngFor="let item of stockDataObj; let i = index">
         <div class="card row">
             <h2>{{item.stockDesc}}({{item.stockSymbol}})<img id="remove{{item.stockSymbol}}" src="assets/icons/close.png" (click)="closeItem(item,i)" class="close-icon"></h2>
@@ -39,4 +40,5 @@
             </div>
         </div>
     </ng-container>
+</ng-container>
 </div>

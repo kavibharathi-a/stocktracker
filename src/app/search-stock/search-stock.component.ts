@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { forkJoin } from 'rxjs';
+import { stockDataObj, stockSymobl, stockSymoblInfo } from '../finhub';
 import { FinnhubService } from '../service/finnhub.service';
 
 @Component({
@@ -9,14 +10,23 @@ import { FinnhubService } from '../service/finnhub.service';
 })
 export class SearchStockComponent implements OnInit {
 
-  stockSymobl:any;
-  symbolInfo:any;
-  stockInfo:any;
-  stockDataObj:any =[];
+  stockSymobl:string ='';
+  symbolInfo:stockSymobl = {
+    displaySymbol: '',
+    description: ''
+    }
+  stockInfo:stockSymoblInfo =  {
+    c: '',
+    o: '',
+    h:'',
+    dp:''
+    }
+  stockDataObj:Array<stockDataObj>  =[];
 
   constructor(private finnhubService:FinnhubService) { }
 
   ngOnInit(): void {
+    
     let dataJson:any = localStorage.getItem('stockList');
     let data:any = JSON.parse(dataJson);
     if(data.stockList.length > 0){
@@ -36,7 +46,7 @@ export class SearchStockComponent implements OnInit {
          'openPrice': this.stockInfo.o,
          'highPrice':this.stockInfo.h,
          'percentageChange':this.stockInfo.dp,
-         'itemSign':Math.sign(this.stockInfo.dp)
+         'itemSign':Math.sign(Number(this.stockInfo.dp))
       })
       this.updateLocalStorage();
     });

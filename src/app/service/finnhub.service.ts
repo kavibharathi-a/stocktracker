@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
-import { Finhubdata } from '../finhub';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -12,8 +12,8 @@ export class FinnhubService {
   configUrl = "https://finnhub.io/api/v1/";
   token = "bu4f8kn48v6uehqi3cqg";
 
-  searchAssets(search: string): Observable<Finhubdata> { 
-    return this.http.get<Finhubdata>(this.configUrl + "search?q=" + search +"&symbol=" + search + "&token=" + this.token);
+  searchAssets(search: string) { 
+    return this.http.get(this.configUrl + "search?q=" + search +"&symbol=" + search + "&token=" + this.token);
   }
 
   getQuote(symbol: string) {

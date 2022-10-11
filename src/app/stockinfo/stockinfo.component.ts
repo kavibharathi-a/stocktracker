@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { insiderInfo } from '../finhub';
 import { FinnhubService } from '../service/finnhub.service';
 
 @Component({
@@ -8,9 +9,9 @@ import { FinnhubService } from '../service/finnhub.service';
   styleUrls: ['./stockinfo.component.css']
 })
 export class StockinfoComponent implements OnInit {
-  symbol: any;
-  insiderInfo: any=[];
-  title: any;
+  symbol: string = '';
+  insiderInfo: Array<insiderInfo> = [];
+  title: string = '';
 
   constructor(private finnhubService: FinnhubService,private route: ActivatedRoute) { }
   
@@ -25,8 +26,8 @@ export class StockinfoComponent implements OnInit {
     this.finnhubService.getInsider(this.symbol).subscribe((response:any)=>{
        this.insiderInfo = response.data;
        this.title = response.symbol;
-       this.insiderInfo.forEach((element:any) => {
-        element.itemSign = Math.sign(element.change);
+       this.insiderInfo.forEach((element:insiderInfo) => {
+        element.itemSign = Math.sign(Number(element.change));
        });
     })
   }
